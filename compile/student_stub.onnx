@@ -1,0 +1,225 @@
+
+pytorch	2.9.1+cpu:øH
+ô	
+input
+net.0.weight
+
+net.0.biasconv2dnode_conv2d"Conv*
+group†*
+pads@@@@†*
+auto_pad"NOTSET†*
+strides@@†*
+	dilations@@†Jñ
+	namespaceà: eval.infer_student.TinyStub/net: torch.nn.modules.container.Sequential/net.0: torch.nn.modules.conv.Conv2d/conv2d: aten.conv2d.defaultJ°
+pkg.torch.onnx.class_hierarchy['eval.infer_student.TinyStub', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J≤
+pkg.torch.onnx.fx_nodeó%conv2d : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%x, %p_net_0_weight, %p_net_0_bias, [1, 1], [1, 1]), kwargs = {})J<
+pkg.torch.onnx.name_scopes['', 'net', 'net.0', 'conv2d']JÃ
+pkg.torch.onnx.stack_trace≠File "/home/kshitij/proj/gan-tinyml-fpga/eval/infer_student.py", line 18, in forward
+    return self.net(x)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+Ë
+conv2drelu	node_relu"ReluJñ
+	namespaceà: eval.infer_student.TinyStub/net: torch.nn.modules.container.Sequential/net.1: torch.nn.modules.activation.ReLU/relu: aten.relu.defaultJ§
+pkg.torch.onnx.class_hierarchyÅ['eval.infer_student.TinyStub', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']JÉ
+pkg.torch.onnx.fx_nodei%relu : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%conv2d,), kwargs = {})J:
+pkg.torch.onnx.name_scopes['', 'net', 'net.1', 'relu']Jƒ
+pkg.torch.onnx.stack_trace•File "/home/kshitij/proj/gan-tinyml-fpga/eval/infer_student.py", line 18, in forward
+    return self.net(x)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+•	
+relu
+net.2.weight
+
+net.2.biasconv2d_1node_conv2d_1"Conv*
+group†*
+pads@@@@†*
+auto_pad"NOTSET†*
+strides@@†*
+	dilations@@†Jò
+	namespaceä: eval.infer_student.TinyStub/net: torch.nn.modules.container.Sequential/net.2: torch.nn.modules.conv.Conv2d/conv2d_1: aten.conv2d.defaultJ°
+pkg.torch.onnx.class_hierarchy['eval.infer_student.TinyStub', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']J∑
+pkg.torch.onnx.fx_nodeú%conv2d_1 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu, %p_net_2_weight, %p_net_2_bias, [1, 1], [1, 1]), kwargs = {})J>
+pkg.torch.onnx.name_scopes ['', 'net', 'net.2', 'conv2d_1']JÃ
+pkg.torch.onnx.stack_trace≠File "/home/kshitij/proj/gan-tinyml-fpga/eval/infer_student.py", line 18, in forward
+    return self.net(x)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+ˆ
+conv2d_1relu_1node_relu_1"ReluJò
+	namespaceä: eval.infer_student.TinyStub/net: torch.nn.modules.container.Sequential/net.3: torch.nn.modules.activation.ReLU/relu_1: aten.relu.defaultJ§
+pkg.torch.onnx.class_hierarchyÅ['eval.infer_student.TinyStub', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.ReLU', 'aten.relu.default']Já
+pkg.torch.onnx.fx_nodem%relu_1 : [num_users=1] = call_function[target=torch.ops.aten.relu.default](args = (%conv2d_1,), kwargs = {})J<
+pkg.torch.onnx.name_scopes['', 'net', 'net.3', 'relu_1']Jƒ
+pkg.torch.onnx.stack_trace•File "/home/kshitij/proj/gan-tinyml-fpga/eval/infer_student.py", line 18, in forward
+    return self.net(x)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/activation.py", line 144, in forward
+    return F.relu(input, inplace=self.inplace)
+©	
+relu_1
+net.4.weight
+
+net.4.biasconv2d_2node_conv2d_2"Conv*
+group†*
+pads@@@@†*
+auto_pad"NOTSET†*
+strides@@†*
+	dilations@@†Jò
+	namespaceä: eval.infer_student.TinyStub/net: torch.nn.modules.container.Sequential/net.4: torch.nn.modules.conv.Conv2d/conv2d_2: aten.conv2d.defaultJ°
+pkg.torch.onnx.class_hierarchy['eval.infer_student.TinyStub', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.conv.Conv2d', 'aten.conv2d.default']Jπ
+pkg.torch.onnx.fx_nodeû%conv2d_2 : [num_users=1] = call_function[target=torch.ops.aten.conv2d.default](args = (%relu_1, %p_net_4_weight, %p_net_4_bias, [1, 1], [1, 1]), kwargs = {})J>
+pkg.torch.onnx.name_scopes ['', 'net', 'net.4', 'conv2d_2']JÃ
+pkg.torch.onnx.stack_trace≠File "/home/kshitij/proj/gan-tinyml-fpga/eval/infer_student.py", line 18, in forward
+    return self.net(x)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+˝
+conv2d_2outputnode_sigmoid"SigmoidJü
+	namespaceë: eval.infer_student.TinyStub/net: torch.nn.modules.container.Sequential/net.5: torch.nn.modules.activation.Sigmoid/sigmoid: aten.sigmoid.defaultJ™
+pkg.torch.onnx.class_hierarchyá['eval.infer_student.TinyStub', 'torch.nn.modules.container.Sequential', 'torch.nn.modules.activation.Sigmoid', 'aten.sigmoid.default']Jã
+pkg.torch.onnx.fx_nodeq%sigmoid : [num_users=1] = call_function[target=torch.ops.aten.sigmoid.default](args = (%conv2d_2,), kwargs = {})J=
+pkg.torch.onnx.name_scopes['', 'net', 'net.5', 'sigmoid']Jµ
+pkg.torch.onnx.stack_traceñFile "/home/kshitij/proj/gan-tinyml-fpga/eval/infer_student.py", line 18, in forward
+    return self.net(x)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/container.py", line 250, in forward
+    input = module(input)
+  File "/home/kshitij/mf/envs/ganfpga/lib/python3.10/site-packages/torch/nn/modules/activation.py", line 359, in forward
+    return torch.sigmoid(input)
+main_graph*ZBnet.0.weightj"
+locationstudent_stub.onnx.dataj
+offset0j
+length288p*2B
+net.0.biasJ sÚx>ñQòº∂n›Ωñp≠<Œ§>ã7	=,æﬁ„>*]Bnet.2.weightj"
+locationstudent_stub.onnx.dataj
+offset576j
+length2304p*2B
+net.2.biasJ ‹T·ΩÉé¥ΩÑ5-Ω	ÎºNmΩ @<HÖ=Àdé=*\Bnet.4.weightj"
+locationstudent_stub.onnx.dataj
+offset288j
+length288p*B
+net.4.biasJ÷«â=Z«
+input
+
+
+
+Ä
+Ä"=
+/pkg.torch.export.graph_signature.InputSpec.kind
+USER_INPUT"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"&
+!pkg.torch.onnx.original_node_namexbë
+output
+
+
+
+Ä
+Ä"?
+0pkg.torch.export.graph_signature.OutputSpec.kindUSER_OUTPUT",
+!pkg.torch.onnx.original_node_namesigmoidjÿ
+net.0.weight
+
+
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"3
+!pkg.torch.onnx.original_node_namep_net_0_weightj»
+
+net.0.bias
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"1
+!pkg.torch.onnx.original_node_namep_net_0_biasjÿ
+net.2.weight
+
+
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"3
+!pkg.torch.onnx.original_node_namep_net_2_weightj»
+
+net.2.bias
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"1
+!pkg.torch.onnx.original_node_namep_net_2_biasjÿ
+net.4.weight
+
+
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"3
+!pkg.torch.onnx.original_node_namep_net_4_weightj»
+
+net.4.bias
+
+
+"<
+/pkg.torch.export.graph_signature.InputSpec.kind	PARAMETER"=
+5pkg.torch.export.graph_signature.InputSpec.persistentNone"1
+!pkg.torch.onnx.original_node_namep_net_4_biasj"
+conv2d
+
+
+
+Ä
+Äj 
+relu
+
+
+
+Ä
+Äj$
+conv2d_1
+
+
+
+Ä
+Äj"
+relu_1
+
+
+
+Ä
+Äj$
+conv2d_2
+
+
+
+Ä
+ÄÇÅ
+0pkg.torch.export.ExportedProgram.graph_signatureÃ
+# inputs
+p_net_0_weight: PARAMETER target='net.0.weight'
+p_net_0_bias: PARAMETER target='net.0.bias'
+p_net_2_weight: PARAMETER target='net.2.weight'
+p_net_2_bias: PARAMETER target='net.2.bias'
+p_net_4_weight: PARAMETER target='net.4.weight'
+p_net_4_bias: PARAMETER target='net.4.bias'
+x: USER_INPUT
+
+# outputs
+sigmoid: USER_OUTPUT
+Ç8
+2pkg.torch.export.ExportedProgram.range_constraints{}B
+ 
