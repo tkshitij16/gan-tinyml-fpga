@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environments
+.env/
+.venv/
+.mf/
+
+# ONNX / model files
+compile/*.onnx
+compile/*.onnx.data
+*.pth
+*.pt
+
+# Logs
+logs/
+*.npz
+*.png
+
+# VS Code
+.vscode/

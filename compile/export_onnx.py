@@ -1,7 +1,15 @@
+import os, sys
+from pathlib import Path
+
+# Make project root importable: <root>/eval, <root>/compile, etc.
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 import torch
 import onnx
 import onnxsim
-from eval.infer_student import TinyStub
+from eval.infer_student import TinyStub   # or StudentGenerator later
 
 def main():
     model = TinyStub().eval()
