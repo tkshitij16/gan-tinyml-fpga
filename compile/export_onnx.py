@@ -1,39 +1,55 @@
+#!/usr/bin/env python3
 import sys
-from pathlib import Path
+import os
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+# Fix import path so eval.student_unet works anywhere
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if ROOT not in sys.path:
+    sys.path.append(ROOT)
 
 import torch
 import onnx
 import onnxsim
-from eval.infer_student import StudentGenerator
+
+from eval.student_unet import StudentUNet
 
 
 def main():
-    model = StudentGenerator().eval()
-    dummy = torch.randn(1, 1, 128, 128)
+    repo_root = ROOT
+    ckpt_path = os.path.join(repo_root, "checkpoints", "student_unet.pth")
+    out_dir = os.path.join(repo_root, "compile")
+    os.makedirs(out_dir, exist_ok=True)
 
-    out_path = ROOT / "compile" / "student_stub.onnx"
+    if not os.path.exists(ckpt_path):
+        raise SystemExit(f"Checkpoint not found: {ckpt_path}")
+
+    model = StudentUNet(in_ch=3, out_ch=3, base_ch=16)
+    state = torch.load(ckpt_path, map_location="cpu")
+    model.load_state_dict(state)
+    model.eval()
+
+    dummy = torch.randn(1, 3, 128, 128, dtype=torch.float32)
+    onnx_path = os.path.join(out_dir, "student_unet.onnx")
+
     torch.onnx.export(
         model,
         dummy,
-        out_path.as_posix(),
+        onnx_path,
         input_names=["input"],
         output_names=["output"],
-        opset_version=18,
-        do_constant_folding=True,
-        dynamic_axes=None,
+        opset_version=13,
+        dynamic_axes={"input": [0], "output": [0]},
     )
-    print("Exported", out_path)
+    print(f"Exported ONNX to {onnx_path}")
 
-    model_onnx = onnx.load(out_path.as_posix())
-    model_simp, check = onnxsim.simplify(model_onnx, dynamic_input_shape=False)
-    assert check, "ONNX simplify failed"
-    simp_path = ROOT / "compile" / "student_stub_simplified.onnx"
-    onnx.save(model_simp, simp_path.as_posix())
-    print("Saved simplified model to", simp_path)
+    model_onnx = onnx.load(onnx_path)
+    model_simp, check = onnxsim.simplify(model_onnx)
+    if not check:
+        raise SystemExit("ONNX simplification failed")
+
+    simp_path = os.path.join(out_dir, "student_unet_simplified.onnx")
+    onnx.save(model_simp, simp_path)
+    print(f"Saved simplified ONNX to {simp_path}")
 
 
 if __name__ == "__main__":
