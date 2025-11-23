@@ -1,22 +1,23 @@
-# Python
+# Python cache
 __pycache__/
 *.pyc
+
+# Local logs, temporary runs
+logs/
+*.log
+
+# Big temporary outputs you don't care about
+results/
+runs/
 
 # Environments
 .env/
 .venv/
 .mf/
 
-# ONNX / model files
-compile/*.onnx
-compile/*.onnx.data
-*.pth
-*.pt
 
-# Logs
-logs/
-*.npz
-*.png
+
+
 
 # VS Code
 .vscode/
