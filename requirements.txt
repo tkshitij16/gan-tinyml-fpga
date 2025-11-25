@@ -1,0 +1,18 @@
+# Core numerical + image stack
+numpy
+pillow
+
+# Deep learning
+torch
+torchvision
+
+# ONNX export + runtime
+onnx
+onnxruntime
+onnxsim
+
+# Training utilities
+tqdm
+
+# UI for interactive demo
+gradio
